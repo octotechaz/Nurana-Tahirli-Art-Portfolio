@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>nurana th — Visual Artist &amp; Illustrator</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            background: "#FDFBF7",
+            surface: "#F4F1DE",
+            accent: "#E07A5F",
+            tag: "#81B29A",
+            text: "#2B2D42"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            display: ["Playfair Display", "serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom Micro-Interactions & Atmospheric Transitions */
+    .panel-hover-overlay {
+      transition: opacity 250ms ease-out, background-color 250ms ease-out;
+    }
+    .panel-container {
+      transition: transform 250ms ease-out;
+    }
+    .panel-container:hover {
+      transform: scale(1.015);
+      z-index: 20;
+    }
+  </style>
+</head>
+<body class="bg-background text-text antialiased selection:bg-accent/20 selection:text-accent min-h-screen flex flex-col font-body">
+<!-- 1. TopNavBar (Shared Component from JSON) -->
+<header class="fixed top-0 left-0 right-0 h-16 w-full z-50 bg-[#FDFBF7]/88 backdrop-blur-md border-b border-surface/50 transition-all duration-250">
+<div class="h-16 w-full px-6 md:px-12 flex items-center justify-between mx-auto max-w-7xl">
+<!-- Brand Logo Anchor -->
+<a class="font-display italic text-2xl font-bold text-accent tracking-tight hover:opacity-80 transition-opacity duration-250" href="#hero">
+        nurana th
+      </a>
+<!-- Right Navigation Cluster -->
+<div class="flex items-center space-x-8">
+<nav class="hidden md:flex items-center space-x-8">
+<!-- Active state logic: 'Work' is primary home destination -->
+<a class="text-accent font-medium transition-colors duration-250 text-sm tracking-wide" href="#work">
+            Work
+          </a>
+<a class="text-text/80 hover:text-text font-normal transition-colors duration-250 text-sm tracking-wide" href="#about">
+            About
+          </a>
+<a class="text-text/80 hover:text-text font-normal transition-colors duration-250 text-sm tracking-wide" href="#contact">
+            Contact
+          </a>
+</nav>
+<!-- Trailing Language Selector -->
+<span class="font-mono text-xs text-tag tracking-widest uppercase py-1 px-2.5 rounded-full border border-tag/30 bg-tag/5">
+          EN | AZ
+        </span>
+</div>
+</div>
+</header>
+<!-- 2. HERO SECTION -->
+<section class="relative w-full h-screen overflow-hidden flex items-end" id="hero">
+<!-- Full-bleed Watercolor Atmosphere Background -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center z-0 scale-100 transition-transform duration-1000 ease-out" data-alt="An ethereal atmospheric fine-art watercolor painting featuring sweeping, delicate washes of terracotta orange, warm ochre gold, and muted sage green. Fluid organic brush textures blend into a soft off-white canvas with luminous ambient lighting. The composition radiates a calm, evocative artistic mood aligned with a refined, tactile gallery aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVEA7eH8ibqiWClZm3BC8y78_YqaO8enrydPv_DFPY0ebg55UKXtMGl4ClHAxuc7X6_A7wMiQ8_63kZVqxgcAA7-Btcm8lzVjiMoCQx-U0v3hNlMDbsgnBZiYyJcyH8OjKe8PFoyDlu1nshPJEQvPmncgikU49qPcw1vZbC1c1K5hVurv4oTcAoVAUiguYfRH5T_KvhyTQ627j4Qi9-cqn9hAWwbKrjhvpKgtgfcxeliy8SrYzx3lUfY7iRRI9GCDXpWXkrIJ9d8ae')">
+</div>
+<!-- Gradient Vignette Layer (Darkening at bottom for high legibility) -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent z-10 pointer-events-none"></div>
+<!-- Bottom-Left Typography Cluster -->
+<div class="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 pb-16 md:pb-24">
+<div class="max-w-2xl">
+<h1 class="font-display text-6xl md:text-[80px] leading-[1.05] font-bold text-white tracking-tight drop-shadow-sm">
+          Nurana th
+        </h1>
+<p class="mt-4 font-body text-lg md:text-[20px] text-white/70 font-light tracking-wide">
+          Visual Artist &amp; Illustrator
+        </p>
+<div class="mt-8">
+<a class="inline-flex items-center gap-3 px-6 py-3 border border-white/60 text-white rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/20 hover:border-white transition-all duration-250 text-sm font-medium tracking-wide" href="#work">
+<span>Explore Work</span>
+<span class="text-base font-normal">→</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Scroll Hint Hint Center Bottom -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+<a aria-label="Scroll to Work" class="text-tag font-mono text-lg animate-bounce hover:opacity-80 transition-opacity" href="#work">
+        ↓
+      </a>
+</div>
+</section>
+<!-- 3. CATEGORIES SECTION -->
+<main class="w-full bg-background flex flex-col p-0" id="work">
+<!-- Panel 1: Digital Illustration -->
+<section class="group relative w-full h-[280px] overflow-hidden border-b-[3px] border-background panel-container cursor-pointer">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105" data-alt="Digital concept illustration showcasing expressive dreamlike organic botanicals and stylized figures bathed in terracotta and muted sage light. The scene is refined with subtle grainy paper texture and layered washes against a bright, airy museum background. Masterful artistic rendering with delicate silhouettes and high-key ambient light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTRjODyxBNjjbtFkVBKssQvgW7HbKoOWQhkPIiTIwiG0w6-zwXYeYlCWAXWTkG9ZQH46eTK4pMkwGUQf0kvZRk1iYcUQlPpXmsJqyW8hsNKHkmDctUQht0TVsRbsxz7yV0Rq2n7Tt3xGvmsg9bgX67K-Tf6ugH4rSmS7vuFgZTd38fq-ZFqgsJcIJ5o40PubQ94qrlTAYW2ZFx_peiZ85p8W_9wXGQsgu2mIZQGQIKHZMxoogkhm3lhQ7BMN_IrQlaydJBm7KeBCHP')">
+</div>
+<!-- Default Subtle Dark Overlay -->
+<div class="absolute inset-0 bg-black/20 group-hover:bg-white/[0.52] panel-hover-overlay"></div>
+<!-- Centered Hover Title (Playfair Display 44px bold #2B2D42) -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-250 pointer-events-none">
+<h2 class="font-display text-3xl md:text-[44px] font-bold text-text tracking-tight">
+          Digital Illustration
+        </h2>
+</div>
+<!-- Bottom-Left Label -->
+<div class="absolute bottom-5 left-6 md:left-12 z-10 pointer-events-none">
+<span class="font-mono text-[11px] uppercase tracking-widest text-white group-hover:text-text font-semibold drop-shadow-sm transition-colors duration-250">
+          DIGITAL ILLUSTRATION
+        </span>
+</div>
+</section>
+<!-- Panel 2: Traditional Art -->
+<section class="group relative w-full h-[280px] overflow-hidden border-b-[3px] border-background panel-container cursor-pointer">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105" data-alt="Traditional fine art oil and gouache canvas showing atmospheric textural landscapes of terracotta stone cliffs and soft sage flora under gentle daylight. The painting reveals expressive impasto strokes, linen textures, and natural earthy pigments on prime archival canvas in a contemporary gallery context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBNAUHGkbTNF_AKXMS-fSiNehRHfDTs-nyL5CDMDuT2BSTXawN9A056iZlNxg2vAE3C5WAl_TrTdTAJ6HSoxBljkRWL1-V2pm2ICc5Nj88QPEERURSW8HIy2HVx9f67yl-wNvMUOhWepwY-cuXP30AvLsx5YdrakNmu38JCboUKouB4fBV3zzrWaPT0cirsjS8ozShPLrN0mF7AQSV9uAy76laPkm4Sko_EBjAXvqh1EcuFgcrGR6_j4qnRqbrwUUHyEVmQ2U0wl60')">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-white/[0.52] panel-hover-overlay"></div>
+<!-- Centered Hover Title -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-250 pointer-events-none">
+<h2 class="font-display text-3xl md:text-[44px] font-bold text-text tracking-tight">
+          Traditional Art
+        </h2>
+</div>
+<!-- Bottom-Left Label -->
+<div class="absolute bottom-5 left-6 md:left-12 z-10 pointer-events-none">
+<span class="font-mono text-[11px] uppercase tracking-widest text-white group-hover:text-text font-semibold drop-shadow-sm transition-colors duration-250">
+          TRADITIONAL ART
+        </span>
+</div>
+</section>
+<!-- Panel 3: Graphic Design (Demonstrated in Active / Hover State by default) -->
+<section class="group relative w-full h-[280px] overflow-hidden border-b-[3px] border-background panel-container cursor-pointer shadow-sm">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center scale-[1.02]" data-alt="Modern graphic design editorial showcase with typography experiments, geometric posters, and bespoke publication layouts in terracotta, warm ecru, and sage green tones. Clean studio lighting illuminates crisp paper edges and sophisticated minimalist identity mockups with timeless elegance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3xlbpSeacs9a7d_iCSOw1nUmRIoFadfr8LqSUxQBIXe6cyMP4VT7Q2KWStgrrAGe0YcpTEzaL2dM9qEMyj5PdVP5blnG4ULbv0M0sfA5m6oq8IJdZdvwnIEgGuEMErHodJsMUzCTvSE5aqUjaY3X6JPmcGlPRn6A6AkYf-nuIA45gKfpN_6rWnDX2x8rDORq-fdoNH0bCYeOroATWH3FFygW5EHoBxGdTp0wZpYOcgiP98lnl-4XYhXiGO3kbTFGDyP9nW1ei69-x')">
+</div>
+<!-- Injected active glowing light/white overlay -->
+<div class="absolute inset-0 bg-white/[0.52] backdrop-blur-[2px]"></div>
+<!-- Centered Graphic Design Title in Playfair 44px dark text -->
+<div class="absolute inset-0 flex items-center justify-center z-10">
+<h2 class="font-display text-3xl md:text-[44px] font-bold text-text tracking-tight text-center px-4">
+          Graphic Design
+        </h2>
+</div>
+<!-- Bottom-Left Label in Dark Text for the Active White Overlay -->
+<div class="absolute bottom-5 left-6 md:left-12 z-10">
+<span class="font-mono text-[11px] uppercase tracking-widest text-text font-semibold">
+          GRAPHIC DESIGN
+        </span>
+</div>
+</section>
+<!-- Panel 4: Printmaking -->
+<section class="group relative w-full h-[280px] overflow-hidden border-b-[3px] border-background panel-container cursor-pointer">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105" data-alt="Handcrafted linocut printmaking art display featuring relief prints on heavy textured cotton rag paper with terracotta ink impressions and botanical patterns. Soft side studio illumination accentuates carved woodcut textures and delicate imperfections of traditional manual press techniques." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBeqMtPHSM-sqPvWIgMiMb5Jrl2ESB6A0OPVuiZ1OrkkzDiLdt0MIgdqA5V2He0iEkTUGf6E_FNGRNu1hDbUQ0YF-P3ItHZj6m1X25J-DtVKjdBpDad23ySkV1ftALciSKBv42wq7DcrF74QuSn4xkFhmEcQOTNc0IiNEpW3SK-dUXNc0gwEM6owwQ4zqksk5i37CG_Bh8GFhRwf20KKMLRyelJwWxRh23RkFNH3w-TQIKdYakg61mXKYh-SXkbF1PIKAVaJmwK3vWA')">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-white/[0.52] panel-hover-overlay"></div>
+<!-- Centered Hover Title -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-250 pointer-events-none">
+<h2 class="font-display text-3xl md:text-[44px] font-bold text-text tracking-tight">
+          Printmaking
+        </h2>
+</div>
+<!-- Bottom-Left Label -->
+<div class="absolute bottom-5 left-6 md:left-12 z-10 pointer-events-none">
+<span class="font-mono text-[11px] uppercase tracking-widest text-white group-hover:text-text font-semibold drop-shadow-sm transition-colors duration-250">
+          PRINTMAKING
+        </span>
+</div>
+</section>
+<!-- Panel 5: Sketchbook -->
+<section class="group relative w-full h-[280px] overflow-hidden border-b-[3px] border-background panel-container cursor-pointer">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105" data-alt="Artist open sketchbook journal filled with graphite sketches, watercolor swatches in sage and terracotta tones, and handwritten creative notes. Sunlight slants across the warm textured desk surface creating soft shadows on raw deckled edges of fine paper." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5Tdtgs2T1nT0seBvKUEpc5K9iz2vEOdSACobyAa8Q05GNesQXiLagMce9X65XqTjAck0RMyEJeePrsNa-HAFwvl73_G7hwh6ZPjc64B-rfhvTL0-9enTmsqxhJcOJjAADICUo-yqd2uoQ-PKCBM9rYCVKQ55BjEUKiJvJ0TTcFEVPIsGriRw-43Mkr-87YS0Xho0S5nqOgkk2UTn4b695sqYWPCDQ8DKu7KsK3JtDOea1V1Ea6wITYjC6jd2c4NON3PL0XGyyIaM5')">
+</div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-white/[0.52] panel-hover-overlay"></div>
+<!-- Centered Hover Title -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-250 pointer-events-none">
+<h2 class="font-display text-3xl md:text-[44px] font-bold text-text tracking-tight">
+          Sketchbook
+        </h2>
+</div>
+<!-- Bottom-Left Label -->
+<div class="absolute bottom-5 left-6 md:left-12 z-10 pointer-events-none">
+<span class="font-mono text-[11px] uppercase tracking-widest text-white group-hover:text-text font-semibold drop-shadow-sm transition-colors duration-250">
+          SKETCHBOOK
+        </span>
+</div>
+</section>
+</main>
+<!-- 4. Footer (Shared Component from JSON) -->
+<footer class="w-full py-12 bg-background border-t-2 border-surface" id="contact">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Brand & Copyright -->
+<div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+<span class="font-display italic text-xl font-bold text-accent">
+          nurana th
+        </span>
+<span class="hidden sm:inline text-surface select-none">|</span>
+<p class="font-body text-sm text-text/70">
+          © 2025 nurana th. All rights reserved.
+        </p>
+</div>
+<!-- Footer Social & Colophon Links -->
+<nav class="flex items-center space-x-6">
+<a class="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250" href="#instagram">
+          Instagram
+        </a>
+<a class="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250" href="#behance">
+          Behance
+        </a>
+<a class="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250" href="#email">
+          Email
+        </a>
+<a class="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250" href="#colophon">
+          Colophon
+        </a>
+</nav>
+</div>
+</footer>
+</body></html>

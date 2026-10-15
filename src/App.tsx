@@ -1,248 +1,192 @@
-import React, { useState } from 'react';
-import {
-  HERO_ARTWORK,
-  DISCIPLINES,
-  CURATORIAL_INTERLUDES,
-  ARTWORKS,
-  ARTIST_BIO,
-  Artwork,
-  Discipline,
-  Language,
-} from './data/portfolioData';
-import { TopNavBar } from './components/TopNavBar';
-import { HeroSection } from './components/HeroSection';
-import { SeriesSection } from './components/SeriesSection';
-import { CategoryArchiveView } from './components/CategoryArchiveView';
-import { ProjectDetailView } from './components/ProjectDetailView';
-import { ArtworkLightbox } from './components/ArtworkLightbox';
-import { DisciplineModal } from './components/DisciplineModal';
-import { AboutModal } from './components/AboutModal';
-import { InquiryModal } from './components/InquiryModal';
-import { ColophonModal } from './components/ColophonModal';
+import React, { useState, useEffect } from 'react';
+import { CategoryId, Inquiry, Language, Artwork } from './types';
+import { ARTWORKS_DATA, EXHIBITIONS_DATA, INITIAL_INQUIRIES } from './data/portfolioData';
+import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { ArrowRight, Mail } from 'lucide-react';
-
-type ActivePage =
-  | { type: 'home' }
-  | { type: 'category'; categoryId: string }
-  | { type: 'project'; projectId: string; categoryId: string };
+import { HomePage } from './components/HomePage';
+import { CategoryPage } from './components/CategoryPage';
+import { CaseStudyPage } from './components/CaseStudyPage';
+import { AboutContactPage } from './components/AboutContactPage';
+import { StudioCMSPage } from './components/StudioCMSPage';
+import { LightboxModal } from './components/LightboxModal';
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>('en');
-  const [activePage, setActivePage] = useState<ActivePage>({ type: 'home' });
+  const [currentView, setCurrentView] = useState<'home' | 'category' | 'case-study' | 'about' | 'contact' | 'studio-cms'>('home');
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>('digital-illustration');
+  const [selectedArtworkId, setSelectedArtworkId] = useState<string>('wanderer-portrait');
+  const [language, setLanguage] = useState<Language>('EN');
+  const [artworks, setArtworks] = useState<Artwork[]>(ARTWORKS_DATA);
+  const [inquiries, setInquiries] = useState<Inquiry[]>(INITIAL_INQUIRIES);
 
-  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
-  const [selectedDisciplineModal, setSelectedDisciplineModal] = useState<Discipline | null>(null);
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
-  const [inquiryArtwork, setInquiryArtwork] = useState<Artwork | null>(null);
-  const [isColophonOpen, setIsColophonOpen] = useState(false);
+  // Lightbox modal state
+  const [lightbox, setLightbox] = useState<{
+    isOpen: boolean;
+    imageSrc: string;
+    title: string;
+    caption?: string;
+  }>({
+    isOpen: false,
+    imageSrc: '',
+    title: '',
+    caption: ''
+  });
 
-  const handleOpenInquiry = (artwork?: Artwork) => {
-    setInquiryArtwork(artwork || null);
-    setIsInquiryOpen(true);
-  };
-
-  const handleSelectDiscipline = (discipline: Discipline) => {
-    setActivePage({ type: 'category', categoryId: discipline.id });
+  // Scroll to top on view changes
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentView, selectedArtworkId, selectedCategory]);
+
+  const handleNavigate = (view: string, categoryId?: string, projectId?: string) => {
+    if (view === 'category') {
+      if (categoryId) setSelectedCategory(categoryId as CategoryId);
+      setCurrentView('category');
+    } else if (view === 'case-study') {
+      if (projectId) setSelectedArtworkId(projectId);
+      setCurrentView('case-study');
+    } else if (view === 'about') {
+      setCurrentView('about');
+    } else if (view === 'contact') {
+      setCurrentView('contact');
+      // Scroll to contact form if already on about/contact page
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else if (view === 'studio-cms') {
+      setCurrentView('studio-cms');
+    } else {
+      setCurrentView('home');
+    }
   };
 
-  const handleGoHome = () => {
-    setActivePage({ type: 'home' });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleSelectCategoryFromHome = (category: CategoryId) => {
+    setSelectedCategory(category);
+    setCurrentView('category');
   };
 
-  const currentCategoryDiscipline =
-    activePage.type === 'category' || activePage.type === 'project'
-      ? DISCIPLINES.find((d) => d.id === activePage.categoryId) || DISCIPLINES[0]
-      : DISCIPLINES[0];
+  const handleSelectArtwork = (artworkId: string) => {
+    setSelectedArtworkId(artworkId);
+    setCurrentView('case-study');
+  };
+
+  const handleOpenLightbox = (imageSrc: string, title: string, caption?: string) => {
+    setLightbox({
+      isOpen: true,
+      imageSrc,
+      title,
+      caption
+    });
+  };
+
+  const handleAddInquiry = (newInquiryData: Omit<Inquiry, 'id' | 'date' | 'status'>) => {
+    const newInquiry: Inquiry = {
+      ...newInquiryData,
+      id: `inq-${Date.now()}`,
+      date: 'Just now',
+      status: 'awaiting'
+    };
+    setInquiries(prev => [newInquiry, ...prev]);
+  };
+
+  const handleUpdateInquiryStatus = (inquiryId: string, status: Inquiry['status']) => {
+    setInquiries(prev =>
+      prev.map(item => (item.id === inquiryId ? { ...item, status } : item))
+    );
+  };
+
+  const handleUpdateArtwork = (updatedArtwork: Artwork) => {
+    setArtworks(prev =>
+      prev.map(art => (art.id === updatedArtwork.id ? updatedArtwork : art))
+    );
+  };
+
+  const currentArtwork = artworks.find(a => a.id === selectedArtworkId) || artworks[0];
 
   return (
-    <div className="bg-background text-text antialiased selection:bg-accent/20 selection:text-accent min-h-screen flex flex-col font-body overflow-x-hidden w-full">
-      {/* 1. Top Navigation Bar */}
-      <TopNavBar
+    <div className="bg-[#FDFBF7] text-[#2B2D42] min-h-screen flex flex-col justify-between selection:bg-[#F2CC8F]/50 selection:text-[#2B2D42] font-body">
+      {/* Top Navigation Bar */}
+      <Header
+        currentView={currentView}
+        onNavigate={handleNavigate}
         language={language}
         onLanguageChange={setLanguage}
-        onOpenAbout={() => setIsAboutOpen(true)}
-        onOpenContact={() => handleOpenInquiry()}
-        onOpenColophon={() => setIsColophonOpen(true)}
-        onGoHome={handleGoHome}
-        currentPageType={activePage.type}
+        isCMSView={currentView === 'studio-cms'}
       />
 
-      {/* Main Content Area: Home View, Category Archive View, or Project Detail View */}
-      {activePage.type === 'home' && (
-        <>
-          {/* 2. Hero Section */}
-          <HeroSection
-            artwork={HERO_ARTWORK}
+      {/* Main View Router */}
+      <div className="flex-grow flex flex-col">
+        {currentView === 'home' && (
+          <HomePage
             language={language}
-            onSelectArtwork={setSelectedArtwork}
+            onSelectCategory={handleSelectCategoryFromHome}
+            onOpenArtworkModal={handleOpenLightbox}
           />
+        )}
 
-          {/* 3. Works Section: Promenade Mode */}
-          <SeriesSection
-            disciplines={DISCIPLINES}
-            interludes={CURATORIAL_INTERLUDES}
+        {currentView === 'category' && (
+          <CategoryPage
+            category={selectedCategory}
+            artworks={artworks}
             language={language}
-            onSelectDiscipline={handleSelectDiscipline}
+            onNavigateHome={() => setCurrentView('home')}
+            onSelectArtwork={handleSelectArtwork}
+            onOpenLightbox={handleOpenLightbox}
           />
+        )}
 
-          {/* 4. In-Page Editorial Bio & Studio Statement Section (#about) */}
-          <section
-            id="about"
-            className="w-full py-16 md:py-24 bg-surface/30 border-t border-b border-surface/70"
-          >
-            <div className="max-w-5xl mx-auto px-6 md:px-12 text-left">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                <div className="space-y-4 max-w-2xl">
-                  <div className="flex items-center gap-2 justify-start">
-                    <span className="w-2 h-2 rounded-full bg-accent" />
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-tag font-semibold">
-                      {language === 'en' ? 'Artist & Studio Philosophy' : 'Rəssam və Emalatxana Fəlsəfəsi'}
-                    </span>
-                  </div>
-                  <h3 className="font-display italic text-2xl md:text-3xl font-bold text-text tracking-tight">
-                    {language === 'en'
-                      ? 'Transcribing the quiet architecture of flora into lasting pigment on paper.'
-                      : 'Floranın sakit memarlığını kağız üzərində qalıcı piqmentə köçürmək.'}
-                  </h3>
-                  <p className="text-sm md:text-base text-text/80 leading-relaxed font-sans">
-                    {ARTIST_BIO.shortBio[language]}
-                  </p>
-                </div>
+        {currentView === 'case-study' && (
+          <CaseStudyPage
+            artwork={currentArtwork}
+            allArtworks={artworks}
+            language={language}
+            onNavigateCategory={(cat) => {
+              setSelectedCategory(cat);
+              setCurrentView('category');
+            }}
+            onNavigateArtwork={handleSelectArtwork}
+            onOpenLightbox={handleOpenLightbox}
+          />
+        )}
 
-                <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setIsAboutOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-surface bg-background text-text font-mono text-xs uppercase tracking-wider font-semibold hover:border-accent hover:text-accent transition-colors shadow-xs cursor-pointer"
-                  >
-                    <span>
-                      {language === 'en' ? 'Read Full Monograph & Bio' : 'Monoqrafiya və Bioqrafiyanı Oxu'}
-                    </span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+        {(currentView === 'about' || currentView === 'contact') && (
+          <AboutContactPage
+            exhibitions={EXHIBITIONS_DATA}
+            language={language}
+            onAddInquiry={handleAddInquiry}
+            onOpenLightbox={handleOpenLightbox}
+          />
+        )}
 
-                  <button
-                    type="button"
-                    onClick={() => handleOpenInquiry()}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-accent text-[#FDFBF7] font-mono text-xs uppercase tracking-wider font-semibold hover:bg-accent/90 transition-colors shadow-xs cursor-pointer"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>
-                      {language === 'en' ? 'Commission / Acquisition Desk' : 'Sifariş & Əldəetmə Şöbəsi'}
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
+        {currentView === 'studio-cms' && (
+          <StudioCMSPage
+            artworks={artworks}
+            inquiries={inquiries}
+            language={language}
+            onNavigateSite={() => setCurrentView('home')}
+            onPreviewCaseStudy={handleSelectArtwork}
+            onUpdateInquiryStatus={handleUpdateInquiryStatus}
+            onUpdateArtwork={handleUpdateArtwork}
+          />
+        )}
+      </div>
 
-      {/* Category Archive View */}
-      {activePage.type === 'category' && (
-        <CategoryArchiveView
-          discipline={currentCategoryDiscipline}
-          disciplinesList={DISCIPLINES}
-          language={language}
-          onBackToHome={handleGoHome}
-          onSelectProject={(projectId) => {
-            setActivePage({
-              type: 'project',
-              projectId,
-              categoryId: activePage.categoryId,
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onSwitchDiscipline={(newId) => {
-            setActivePage({ type: 'category', categoryId: newId });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-      )}
-
-      {/* Project Detail View (e.g. Bloom Series) */}
-      {activePage.type === 'project' && (
-        <ProjectDetailView
-          language={language}
-          onBackToCategory={() => {
-            setActivePage({ type: 'category', categoryId: activePage.categoryId });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onSelectProject={(newProjectId) => {
-            setActivePage({
-              type: 'project',
-              projectId: newProjectId,
-              categoryId: activePage.categoryId,
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
-      )}
-
-      {/* Footer */}
+      {/* Shared Footer */}
       <Footer
         language={language}
-        onOpenColophon={() => setIsColophonOpen(true)}
-        onOpenContact={() => handleOpenInquiry()}
+        onNavigateCMS={() => setCurrentView('studio-cms')}
+        isCMS={currentView === 'studio-cms'}
       />
 
-      {/* Interactive Overlays & Modals */}
-      {selectedArtwork && (
-        <ArtworkLightbox
-          artwork={selectedArtwork}
-          artworksList={ARTWORKS}
-          language={language}
-          onClose={() => setSelectedArtwork(null)}
-          onSelectArtwork={setSelectedArtwork}
-          onInquire={handleOpenInquiry}
-        />
-      )}
-
-      {selectedDisciplineModal && (
-        <DisciplineModal
-          discipline={selectedDisciplineModal}
-          artworks={ARTWORKS}
-          language={language}
-          onClose={() => setSelectedDisciplineModal(null)}
-          onSelectArtwork={setSelectedArtwork}
-        />
-      )}
-
-      {isAboutOpen && (
-        <AboutModal
-          isOpen={isAboutOpen}
-          language={language}
-          onClose={() => setIsAboutOpen(false)}
-          onOpenContact={() => {
-            setIsAboutOpen(false);
-            handleOpenInquiry();
-          }}
-        />
-      )}
-
-      {isInquiryOpen && (
-        <InquiryModal
-          isOpen={isInquiryOpen}
-          selectedArtwork={inquiryArtwork}
-          language={language}
-          onClose={() => {
-            setIsInquiryOpen(false);
-            setInquiryArtwork(null);
-          }}
-        />
-      )}
-
-      {isColophonOpen && (
-        <ColophonModal
-          isOpen={isColophonOpen}
-          language={language}
-          onClose={() => setIsColophonOpen(false)}
-        />
-      )}
+      {/* Lightbox / Art Detail Modal */}
+      <LightboxModal
+        isOpen={lightbox.isOpen}
+        imageSrc={lightbox.imageSrc}
+        title={lightbox.title}
+        caption={lightbox.caption}
+        onClose={() => setLightbox(prev => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 }

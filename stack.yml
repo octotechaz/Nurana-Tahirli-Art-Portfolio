@@ -1,0 +1,17 @@
+services:
+  nurana-frontend:
+    container_name: nurana-frontend
+    image: nurana-frontend:latest
+    restart: unless-stopped
+    networks:
+      - edge
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=edge'
+      - 'traefik.http.routers.nurana.rule=Host(`nurana.octotech.az`)'
+      - 'traefik.http.routers.nurana.entrypoints=web'
+      - 'traefik.http.services.nurana.loadbalancer.server.port=80'
+
+networks:
+  edge:
+    external: true

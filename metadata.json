@@ -1,6 +1,6 @@
 {
-  "name": "Nurana th — Visual Artist & Illustrator",
-  "description": "Curated portfolio and exhibition archive of visual artist & illustrator Nurana th, featuring botanical form, pigment studies, printmaking, and graphic works.",
+  "name": "Nurana th — Portfolio & Studio",
+  "description": "Quiet art gallery portfolio and studio CMS for Baku-based illustrator and visual storyteller Nurana th.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

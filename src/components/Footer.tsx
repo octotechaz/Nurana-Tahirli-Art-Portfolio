@@ -1,67 +1,75 @@
 import React from 'react';
-import { Language } from '../data/portfolioData';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
 interface FooterProps {
   language: Language;
-  onOpenColophon: () => void;
-  onOpenContact: () => void;
+  onNavigateCMS: () => void;
+  isCMS?: boolean;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   language,
-  onOpenColophon,
-  onOpenContact,
+  onNavigateCMS,
+  isCMS = false
 }) => {
+  const t = TRANSLATIONS[language];
+
   return (
-    <footer className="w-full py-8 bg-background border-t-2 border-surface" id="contact">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-row flex-wrap items-center justify-between gap-4 sm:gap-6">
-        <div className="flex flex-row items-center gap-3 sm:gap-6 text-left">
-          <a
-            href="#hero"
-            className="font-display italic text-xl font-bold text-accent hover:opacity-80 transition-opacity"
-          >
-            nurana th
-          </a>
-          <span className="text-surface select-none">|</span>
-          <p className="font-body text-xs sm:text-sm text-text/70">
-            {language === 'en'
-              ? '© 2025 nurana th. All rights reserved.'
-              : '© 2025 nurana th. Bütün hüquqlar qorunur.'}
-          </p>
+    <footer className="w-full border-t border-[#E9ECEF]/60 bg-transparent transition-colors duration-200">
+      <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-4 font-body text-xs text-[#6C757D] tracking-wide">
+        <div className="flex items-center gap-2">
+          <span className="font-headline font-semibold text-[#2B2D42]">Nurana th</span>
+          <span className="text-[#E9ECEF]">|</span>
+          <span>{t.footer.copyright}</span>
         </div>
 
-        <nav className="flex flex-wrap items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-6">
           <a
-            className="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250 py-1"
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-[#2B2D42] transition-colors duration-200"
           >
-            Instagram
+            {t.footer.instagram}
           </a>
           <a
-            className="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250 py-1"
             href="https://behance.net"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-[#2B2D42] transition-colors duration-200"
           >
-            Behance
+            {t.footer.behance}
           </a>
-          <button
-            type="button"
-            onClick={onOpenContact}
-            className="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250 cursor-pointer py-1"
+          <a
+            href="mailto:hello@nurana.art"
+            className="hover:text-[#2B2D42] transition-colors duration-200"
           >
-            Email
-          </button>
-          <button
-            type="button"
-            onClick={onOpenColophon}
-            className="font-mono text-xs uppercase tracking-wider text-tag hover:text-accent transition-colors duration-250 cursor-pointer py-1"
-          >
-            Colophon
-          </button>
-        </nav>
+            {t.footer.email}
+          </a>
+
+          {!isCMS && (
+            <>
+              <span className="text-[#E9ECEF]">·</span>
+              <button
+                onClick={onNavigateCMS}
+                className="font-mono text-[11px] text-[#6C757D] hover:text-[#E07A5F] transition-colors cursor-pointer"
+                title="Open Studio Desk CMS"
+              >
+                STUDIO CMS v1.4
+              </button>
+            </>
+          )}
+
+          {isCMS && (
+            <>
+              <span className="text-[#E9ECEF]">·</span>
+              <span className="font-mono text-[11px] text-[#6C757D]">
+                STUDIO CMS v1.4
+              </span>
+            </>
+          )}
+        </div>
       </div>
     </footer>
   );

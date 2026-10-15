@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bloom Series — nurana th</title>
+<!-- Google Fonts: Playfair Display, Inter, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            background: "#FDFBF7",
+            surface: "#F4F1DE",
+            accent: "#E07A5F",
+            tag: "#81B29A",
+            text: "#2B2D42"
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            body: ["Inter", "sans-serif"],
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          },
+          transitionDuration: {
+            '250': '250ms'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDFBF7;
+      color: #2B2D42;
+      font-family: 'Inter', sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .hover-lift {
+      transition: transform 250ms ease-out;
+    }
+    .hover-lift:hover {
+      transform: scale(1.015);
+    }
+  </style>
+</head>
+<body class="bg-background text-text antialiased selection:bg-surface selection:text-accent">
+<!-- Top Navigation (Shared Component) -->
+<header class="fixed top-0 left-0 right-0 h-16 w-full z-50 bg-background/88 backdrop-blur-md border-b border-surface/50">
+<div class="h-16 w-full px-6 md:px-12 flex items-center justify-between mx-auto max-w-7xl">
+<!-- Brand Logo -->
+<a class="font-display italic text-2xl font-bold text-accent tracking-tight transition-transform duration-250 ease-out hover:scale-[1.015]" href="#">
+        nurana th
+      </a>
+<!-- Navigation Links -->
+<nav class="flex items-center space-x-8 md:space-x-10 text-sm">
+<a class="text-accent font-medium transition-colors duration-250 hover:opacity-80" href="#">Work</a>
+<a class="text-text/80 hover:text-text font-normal transition-colors duration-250" href="#">About</a>
+<a class="text-text/80 hover:text-text font-normal transition-colors duration-250" href="#">Contact</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center">
+<span class="font-mono text-xs uppercase tracking-wider text-tag font-medium select-none">
+          EN | AZ
+        </span>
+</div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="pt-28 md:pt-36 pb-20">
+<!-- Centered Header Section -->
+<section class="max-w-4xl mx-auto px-6 text-center mb-16 md:mb-24">
+<!-- Back Link -->
+<div class="mb-5">
+<a class="inline-flex items-center gap-1.5 font-mono text-xs md:text-sm uppercase tracking-wider text-tag font-semibold hover:text-accent transition-colors duration-250" href="#">
+          ← Digital Illustration
+        </a>
+</div>
+<!-- Meta Info -->
+<div class="mb-4">
+<span class="font-mono text-xs md:text-sm tracking-widest text-[#81B29A] uppercase font-medium">
+          DIGITAL ILLUSTRATION · 2024
+        </span>
+</div>
+<!-- Title -->
+<h1 class="font-display text-5xl md:text-7xl lg:text-[68px] font-bold text-text tracking-tight leading-[1.1] mb-6">
+        Bloom Series
+      </h1>
+<!-- Short Description -->
+<p class="font-body text-base md:text-xl text-text/80 max-w-2xl mx-auto leading-relaxed font-light mb-12">
+        An exploratory study into translucent botanical structures, organic gradients, and the quiet rhythm of emerging flora.
+      </p>
+<!-- Thin Horizontal Divider Line -->
+<div class="w-full max-w-xl mx-auto h-[1px] bg-surface"></div>
+</section>
+<!-- Artwork Gallery: 4 full-width artworks stacked vertically -->
+<section class="max-w-5xl mx-auto px-6 space-y-20 md:space-y-28">
+<!-- Artwork 01 -->
+<article class="flex flex-col items-center">
+<div class="w-full h-[60vh] min-h-[460px] max-h-[760px] bg-surface/30 rounded-sm overflow-hidden flex items-center justify-center p-3 md:p-6 shadow-sm border border-surface/40 hover-lift">
+<img alt="Bloom Series 01 by Nurana th" class="w-full h-full object-contain pointer-events-none select-none" src="https://lh3.googleusercontent.com/aida/AEtjO1W5RxbKv1rlmPIB5BaTeQAIkjUtuB-KxGxKGL6d8WsMELdLmQtrKEr1llV6kwtfqaJ9aFm-hCaDbDGHTkfe_Qddm1oD5OfNLxdw6dUWZE0EwVN0F6oEy7zg8HbxqjnvAKyrVhcFYVgrGWtNs1wR7BCT059f5PpkXAfklshpIs0ay8r9FFJPn_HDlneFqXEltYmTmTxz2CZ9wYY2lj9yEziu3evuhw95XO5361YqeNrtYNR65FtAN5ASM-rK"/>
+</div>
+<div class="w-full mt-5 px-2 flex flex-wrap items-baseline justify-start text-sm md:text-base">
+<span class="font-mono font-bold text-accent mr-3 tracking-wider text-base">01</span>
+<span class="font-sans font-bold text-text mr-3">First Light</span>
+<span class="font-sans text-text/60 font-normal">— Pale yellow bleeding into ivory, the first wash.</span>
+</div>
+</article>
+<!-- Artwork 02 -->
+<article class="flex flex-col items-center">
+<div class="w-full h-[60vh] min-h-[460px] max-h-[760px] bg-surface/30 rounded-sm overflow-hidden flex items-center justify-center p-3 md:p-6 shadow-sm border border-surface/40 hover-lift">
+<img alt="Bloom Series 02 by Nurana th" class="w-full h-full object-contain pointer-events-none select-none" src="https://lh3.googleusercontent.com/aida/AEtjO1VZ6cjl8tLD5ZHAf5AK-7RP6qM5xlJ-HRdCkj0VleJmtt1Dtv2-n1aa96u997TlT9ymQMOUVC6z-G_-a2T3El5qr-vO2FOiulnfViMR6G9mXRkGe7oW5-PINTMgfSEZ5Y3yXxo_es_Y2Gnv7qitlw-fmsZRMyua19NOM44OsOH9RxmswpbX4DkQ_0qL0APpiwXFLav779w2t2LbOsZQwdM5urpy2hwIq841JqxshgOHSvkrL_rAIa9ab2Q"/>
+</div>
+<div class="w-full mt-5 px-2 flex flex-wrap items-baseline justify-start text-sm md:text-base">
+<span class="font-mono font-bold text-accent mr-3 tracking-wider text-base">02</span>
+<span class="font-sans font-bold text-text mr-3">Petal Architecture</span>
+<span class="font-sans text-text/60 font-normal">— Structural forms emerge from the second layer.</span>
+</div>
+</article>
+<!-- Artwork 03 -->
+<article class="flex flex-col items-center">
+<div class="w-full h-[60vh] min-h-[460px] max-h-[760px] bg-surface/30 rounded-sm overflow-hidden flex items-center justify-center p-3 md:p-6 shadow-sm border border-surface/40 hover-lift">
+<img alt="Bloom Series 03 by Nurana th" class="w-full h-full object-contain pointer-events-none select-none" src="https://lh3.googleusercontent.com/aida/AEtjO1WCVASgMDsR56bIvaudPc-GcgxIQ_-eslmtGw7gFQYGFp5KNde785VPGJmw9JZyE23dpcN-X31LiEIwL_lPRVNVorWCh_ZF5cgB02ewQ1ya_ESTUVLSuxeARRIoe8bgLpRGxLnR19EBYHq2OxabgGG3sfIedbeSu5XszT6W7jxXCHVGhG9NoLy381X-fifWkMc6vW0T4AHYq6HsSariQuhxAsSQacFNV1SU4_1W5VNMwtx2bp99WhwylPyG"/>
+</div>
+<div class="w-full mt-5 px-2 flex flex-wrap items-baseline justify-start text-sm md:text-base">
+<span class="font-mono font-bold text-accent mr-3 tracking-wider text-base">03</span>
+<span class="font-sans font-bold text-text mr-3">After Rain</span>
+<span class="font-sans text-text/60 font-normal">— Raindrops cling to petals, negative space as important as mark.</span>
+</div>
+</article>
+<!-- Artwork 04 -->
+<article class="flex flex-col items-center">
+<div class="w-full h-[60vh] min-h-[460px] max-h-[760px] bg-surface/30 rounded-sm overflow-hidden flex items-center justify-center p-3 md:p-6 shadow-sm border border-surface/40 hover-lift">
+<img alt="Bloom Series 04 by Nurana th" class="w-full h-full object-contain pointer-events-none select-none" src="https://lh3.googleusercontent.com/aida/AEtjO1WeI0j1xkmv9j6SQD6N0r-rKbHXvQ8_NE_U5DtsvBOoasQZ6fbDzmh9Hou5O0pOci44BWYwjCrEtgi18UQm44EEURiBCv6E0kP_W3ARs_jSevsTugUOOb2vNHiCIjtd6QwhfKqNeCtN38ZcUH1o6npw9oFE7roBLvYVAmh_voiwL0Lroaxxzw5LsdGOxN1Xfmxle1D1RcpOLurzxrQRLDvEjXYIsggsmKQodynnccdX2NZcUjTmKpuQPwc"/>
+</div>
+<div class="w-full mt-5 px-2 flex flex-wrap items-baseline justify-start text-sm md:text-base">
+<span class="font-mono font-bold text-accent mr-3 tracking-wider text-base">04</span>
+<span class="font-sans font-bold text-text mr-3">Golden Hour Fade</span>
+<span class="font-sans text-text/60 font-normal">— Light becomes amber before it disappears.</span>
+</div>
+</article>
+</section>
+<!-- Project Navigation Band -->
+<section class="mt-28 md:mt-36 bg-surface w-full py-8 md:py-10">
+<div class="max-w-5xl mx-auto px-6 flex items-center justify-between text-sm md:text-base font-medium">
+<a class="inline-flex items-center text-text/80 hover:text-accent font-sans transition-colors duration-250 group" href="#">
+<span class="transition-transform duration-250 group-hover:-translate-x-1">← Urban Fragments</span>
+</a>
+<a class="inline-flex items-center text-text/80 hover:text-accent font-sans transition-colors duration-250 group" href="#">
+<span class="transition-transform duration-250 group-hover:translate-x-1">Celestial Maps →</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-12 bg-background border-t-2 border-surface">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Copyright text -->
+<p class="font-body text-sm text-text/70 order-2 md:order-1">
+        © 2025 nurana th. All rights reserved.
+      </p>
+<!-- External Links -->
+<div class="flex items-center space-x-6 md:space-x-8 font-mono text-xs uppercase tracking-wider text-tag order-1 md:order-2">
+<a class="hover:text-accent transition-colors duration-250" href="#">Instagram</a>
+<a class="hover:text-accent transition-colors duration-250" href="#">Behance</a>
+<a class="hover:text-accent transition-colors duration-250" href="#">Email</a>
+<a class="hover:text-accent transition-colors duration-250" href="#">Colophon</a>
+</div>
+</div>
+</footer>
+</body></html>

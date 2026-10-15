@@ -1,8 +1,32 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 build/
 dist/
 coverage/
-.DS_Store
-*.log
+
+# Environment files
 .env*
 !.env.example
+
+# OS
+.DS_Store
+*.log
+
+# Dev artifacts (local only)
+web/
+stitchten.zip
+*.desktop
+.tmp/
+.agent-browser/
+.dev-port
+.run/
+
+# Temp/smoke test files
+_*.txt
+_*.png
+_smoke.png
+
+# Editor
+.cursor/
